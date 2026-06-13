@@ -1,0 +1,21 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" fill="none">
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0891b2" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+  <!-- Silueta dentista (izquierda) -->
+  <ellipse cx="180" cy="110" rx="55" ry="65" fill="url(#grad2)"/>
+  <ellipse cx="180" cy="230" rx="75" ry="85" fill="url(#grad2)"/>
+  <ellipse cx="180" cy="370" rx="90" ry="60" fill="url(#grad2)"/>
+  <!-- Silueta paciente (derecha) -->
+  <ellipse cx="340" cy="130" rx="50" ry="60" fill="url(#grad2)"/>
+  <ellipse cx="340" cy="250" rx="70" ry="80" fill="url(#grad2)"/>
+  <ellipse cx="340" cy="380" rx="85" ry="55" fill="url(#grad2)"/>
+  <!-- Interacción: manos/dentista mirando paciente -->
+  <path d="M220 220 Q280 200 300 230" stroke="#0891b2" stroke-width="3" fill="none" opacity="0.6" stroke-linecap="round"/>
+  <path d="M230 250 Q290 260 310 240" stroke="#22c55e" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round" stroke-dasharray="8,4"/>
+  <!-- Texto placeholder -->
+  <text x="250" y="380" text-anchor="middle" font-family="system-ui" font-size="14" fill="#0891b2" opacity="0.6">[PLACEHOLDER: Dentista + Paciente - consulta]</text>
+</svg>

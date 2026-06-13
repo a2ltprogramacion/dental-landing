@@ -1,0 +1,508 @@
+﻿---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import Services from "../components/Services.astro";
+import ProblemSolution from "../components/ProblemSolution.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import Evidence from "../components/Evidence.astro";
+import AppointmentForm from "../components/AppointmentForm.astro";
+import CTASection from "../components/CTASection.astro";
+import FAQ from "../components/FAQ.astro";
+import Footer from "../components/Footer.astro";
+
+const svgTooth =
+  '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C9.5 2 7 3.5 7 7c0 2.5 1 4 2 5.5S11 16 11 20c0 1.1.9 2 2 2s2-.9 2-2c0-4-.5-6 1-7.5S18 9.5 18 7c0-3.5-2.5-5-5-5h-1z" /></svg>';
+const svgBraces =
+  '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>';
+const svgStar =
+  '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg>';
+const svgImplant =
+  '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 6H9L8 4z" /></svg>';
+
+// FAQPage Schema Markup para GEO/SEO
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "¿Cuánto tiempo dura una consulta de valoración?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "La consulta de valoración dura aproximadamente 45 minutos. Incluye radiografías digitales, examen completo y un plan de tratamiento personalizado sin compromiso.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Ofrecen planes de pago?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sí, ofrecemos planes de financiamiento flexibles con cuotas mensuales. También aceptamos seguros médicos principales y tarjetas de crédito.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Qué tecnologías utilizan?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Contamos con radiografía digital 3D, escáner intraoral, sedación consciente y equipos de última generación para maximizar precisión y comodidad.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Atienden emergencias dentales?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sí, contamos con servicio de emergencias. El mismo día le atendemos para dolor agudo, trauma dental o infección.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Es doloroso el tratamiento de implantes?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. Utilizamos anestesia local de efecto prolongado y ofrecemos sedación consciente. La mayoría de nuestros pacientes describe el proceso como mucho más cómodo de lo que esperaba.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Cada cuánto debo visitar al dentista?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Recomendamos una revisión y limpieza profesional cada 6 meses. Pacientes con tratamientos activos pueden requerir visitas más frecuentes.",
+      },
+    },
+  ],
+};
+
+// Datos originales para GEO (AI-citation engineering)
+const originalStats = {
+  yearsExperience: 15,
+  patientsTreated: 3000,
+  satisfactionRate: 98,
+  googleRating: 4.9,
+  emergencyResponseHours: 2,
+  financingOptions: 3,
+  technologiesCount: 4,
+  specialtiesCount: 4,
+};
+
+const expertQuote = {
+  author: "Dra. María González",
+  role: "Directora Clínica BrightSmile",
+  credential:
+    "Especialista en Implantología y Prótesis (Universidad Central de Venezuela, 2008)",
+  quote:
+    "La odontología moderna no es solo reparar dientes, es devolver calidad de vida. En BrightSmile combinamos tecnología 3D con un trato humano que elimina el miedo al dentista.",
+  source: "Entrevista interna BrightSmile, 2024",
+};
+---
+
+<Layout
+  title="Clínica Dental BrightSmile | Tu Sonrisa en las Mejores Manos"
+  description="Odontología integral en [TU CIUDAD]: ortodoncia invisible, implantes, estética dental y odontología general. 15+ años, +3000 pacientes, 98% satisfacción, 4.9★ Google. Agenda online con Cal.com en 30 seg."
+  canonicalURL="https://brightsmile.pages.dev"
+  ogImage="/images/og-brightsmile-dental-clinic.svg"
+  ogImageWidth={1200}
+  ogImageHeight={630}
+  ogImageAlt="BrightSmile — Odontología integral con tecnología y calidez humana"
+  siteName="Clínica Dental BrightSmile"
+  type="website"
+  modifiedTime="2024-12-13"
+  authorName="Equipo BrightSmile"
+  authorURL="https://brightsmile.pages.dev/#equipo"
+>
+  <Navbar
+    brandName="BrightSmile"
+    links={[
+      { label: "Servicios", href: "#servicios" },
+      { label: "Como Funciona", href: "#como-funciona" },
+      { label: "Testimonios", href: "#evidencia" },
+      { label: "FAQ", href: "#faq" },
+      { label: "Contacto", href: "#agenda" },
+    ]}
+    ctaText="Agendar Cita"
+    ctaLink="#agenda"
+  />
+
+  <Hero
+    title="Tu sonrisa merece lo mejor"
+    subtitle="Odontologia integral con tecnologia de vanguardia y un equipo que realmente se preocupa por tu bienestar dental."
+    ctaText="Agenda tu Cita"
+    ctaLink="#agenda"
+    secondaryCtaText="Nuestros Servicios"
+    secondaryCtaLink="#servicios"
+    badge="15+ anos de experiencia"
+    portraitImage={{
+      alt: "Dra. María González, directora clínica BrightSmile, sonriendo con confianza en consulta moderna",
+    }}
+  />
+
+  <!-- Services Grid: Discovery → Decision funnel (antes de agendar) -->
+  <div id="servicios" class="section-padding bg-bg-alt reveal">
+    <Services
+      sectionTitle="Nuestros servicios"
+      sectionSubtitle="Soluciones dentales integrales con la mejor tecnología"
+      services={[
+        {
+          icon: svgTooth,
+          title: "Odontología General",
+          description:
+            "Limpiezas, revisiones, empastes y prevención. La base de una sonrisa saludable.",
+          ctaText: "Más información",
+          ctaLink: "#agenda",
+        },
+        {
+          icon: svgBraces,
+          title: "Ortodoncia",
+          description:
+            "Alinea tu sonrisa con brackets tradicionales o aligners invisibles.",
+          ctaText: "Más información",
+          ctaLink: "#agenda",
+        },
+        {
+          icon: svgStar,
+          title: "Estética Dental",
+          description:
+            "Blanqueamiento, carillas y diseños de sonrisa. Tu mejor versión.",
+          ctaText: "Más información",
+          ctaLink: "#agenda",
+        },
+        {
+          icon: svgImplant,
+          title: "Implantología",
+          description:
+            "Implantes de titanio con garantía. Recupera función y estética.",
+          ctaText: "Más información",
+          ctaLink: "#agenda",
+        },
+      ]}
+    />
+  </div>
+
+  <ProblemSolution
+    problemTitle="Problemas comunes"
+    solutionTitle="Nuestra solucion"
+    problems={[
+      {
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01" /></svg>',
+        text: "Dolor dental que ignora hasta que se vuelve urgencia",
+      },
+      {
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01" /></svg>',
+        text: "Miedo al dentista que impide cuidar tu salud oral",
+      },
+      {
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01" /></svg>',
+        text: "Sonrisas que no te representan y afectan tu confianza",
+      },
+    ]}
+    solutions={[
+      {
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>',
+        text: "Diagnostico preventivo con tecnologia digital 3D",
+      },
+      {
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>',
+        text: "Ambiente comodo con sedacion consciente disponible",
+      },
+      {
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>',
+        text: "Resultados naturales que potencian tu mejor version",
+      },
+    ]}
+  />
+
+  <div id="como-funciona">
+    <HowItWorks
+      sectionTitle="Como funciona"
+      sectionSubtitle="Tu camino hacia una sonrisa perfecta en 3 pasos simples"
+      steps={[
+        {
+          number: "01",
+          title: "Agenda en linea",
+          description:
+            "Elige el servicio, fecha y hora que te convengan. Confirmamos en menos de 2 horas.",
+          icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>',
+        },
+        {
+          number: "02",
+          title: "Consulta personalizada",
+          description:
+            "Evaluacion completa con tecnologia digital. Plan de tratamiento claro, sin sorpresas.",
+          icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>',
+        },
+        {
+          number: "03",
+          title: "Tratamiento y seguimiento",
+          description:
+            "Procedimiento profesional con seguimiento post-tratamiento para garantizar resultados.",
+          icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>',
+        },
+      ]}
+    />
+  </div>
+
+  <div id="evidencia">
+    <Evidence
+      sectionTitle="Resultados que hablan por si solos"
+      stats={[
+        { value: "15+", label: "Anos de experiencia" },
+        { value: "3,000+", label: "Pacientes atendidos" },
+        { value: "98%", label: "Satisfaccion" },
+      ]}
+      testimonials={[
+        {
+          name: "Ana Rodriguez",
+          result: "Blanqueamiento dental",
+          detail:
+            "Nunca pense que mi sonrisa pudira verse asi. El equipo fue increible, desde la primera consulta supe que estaba en buenas manos.",
+        },
+        {
+          name: "Carlos Mendez",
+          result: "Implante dental",
+          detail:
+            "Despues de anos evitando al dentista, encontre un lugar donde me siento seguro. El implante quedo perfecto y el proceso fue mucho mas facil de lo que esperaba.",
+        },
+      ]}
+      actionImage={{
+        alt: "Dra. María González explicando plan de tratamiento con escáner intraoral a paciente sonriente en consulta moderna",
+      }}
+    />
+  </div>
+
+  <!-- E-E-A-T: Expert Authority Signal (GEO Optimization) -->
+  <section id="autoridad" class="section-padding bg-bg-alt reveal">
+    <div class="max-w-4xl mx-auto">
+      <div
+        class="bg-bg-surface rounded-2xl border border-border p-8 md:p-12 text-center relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 right-0 w-32 h-32 bg-primary-100 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/2"
+        >
+        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-14 h-14 mx-auto text-primary-500 mb-6 opacity-60"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          ><path d="M12 14l9-5-9-5-9 5 9 5z"></path><path
+            d="M5.105 6.376l9-4.5 9 4.5"></path><path
+            d="M17.14 9.486l6.753 3.377"></path><path
+            d="M15 20.128l-6.753 3.376"></path><path d="M2.25 9.486l6.753 3.377"
+          ></path></svg
+        >
+        <blockquote
+          class="text-text-muted leading-relaxed text-lg md:text-xl mb-8 max-w-2xl mx-auto"
+        >
+          &ldquo;{expertQuote.quote}&rdquo;
+        </blockquote>
+        <div class="flex items-center justify-center gap-4">
+          <div
+            class="w-14 h-14 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-bold text-lg"
+          >
+            {expertQuote.author.charAt(0)}
+          </div>
+          <div class="text-left">
+            <p class="font-heading font-semibold text-text-main">
+              {expertQuote.author}
+            </p>
+            <p class="text-primary-500 text-sm">{expertQuote.role}</p>
+            <p class="text-text-light text-xs mt-1">{expertQuote.credential}</p>
+          </div>
+        </div>
+        <p class="text-text-light text-xs mt-4">{expertQuote.source}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GEO Optimization: Tabla de especialidades para decisión final -->
+  <section id="especialidades" class="section-padding bg-bg-surface reveal">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <span
+          class="section-label text-primary-600 bg-primary-50 border border-primary-100"
+          >Nuestras especialidades</span
+        >
+        <h2
+          class="text-3xl md:text-4xl font-heading font-bold text-text-main mb-4"
+        >
+          Elige la tuya
+        </h2>
+        <p class="text-lg text-text-muted max-w-2xl mx-auto">
+          Comparativa para decidir. Todas incluyen diagnóstico digital 3D y plan
+          personalizado sin compromiso.
+        </p>
+      </div>
+      <div
+        class="overflow-x-auto rounded-2xl border border-border bg-bg-surface"
+      >
+        <table class="w-full">
+          <thead>
+            <tr class="bg-primary-50 border-b border-border">
+              <th
+                class="text-left p-4 md:p-6 font-heading font-semibold text-text-main"
+                >Servicio</th
+              >
+              <th
+                class="text-left p-4 md:p-6 font-heading font-semibold text-text-main"
+                >Indicado para</th
+              >
+              <th
+                class="text-left p-4 md:p-6 font-heading font-semibold text-text-main"
+                >Duración típica</th
+              >
+              <th
+                class="text-left p-4 md:p-6 font-heading font-semibold text-text-main"
+                >Tecnología clave</th
+              >
+              <th
+                class="text-left p-4 md:p-6 font-heading font-semibold text-text-main"
+                >Garantía</th
+              >
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-border">
+            <tr class="hover:bg-primary-50/30 transition-colors">
+              <td class="p-4 md:p-6 font-semibold text-text-main"
+                >Odontología General</td
+              >
+              <td class="p-4 md:p-6 text-text-muted"
+                >Prevención, limpiezas, caries, revisiones rutinarias</td
+              >
+              <td class="p-4 md:p-6 text-text-muted">30-45 min</td>
+              <td class="p-4 md:p-6 text-text-muted"
+                >Radiografía digital, fluorización</td
+              >
+              <td class="p-4 md:p-6 text-cta-500 font-medium">6 meses</td>
+            </tr>
+            <tr class="hover:bg-primary-50/30 transition-colors">
+              <td class="p-4 md:p-6 font-semibold text-text-main">Ortodoncia</td
+              >
+              <td class="p-4 md:p-6 text-text-muted"
+                >Dientes desalineados, mordida cruzada, apiñamiento</td
+              >
+              <td class="p-4 md:p-6 text-text-muted">12-24 meses</td>
+              <td class="p-4 md:p-6 text-text-muted"
+                >Escáner intraoral, aligners 3D</td
+              >
+              <td class="p-4 md:p-6 text-cta-500 font-medium">5 años</td>
+            </tr>
+            <tr class="hover:bg-primary-50/30 transition-colors">
+              <td class="p-4 md:p-6 font-semibold text-text-main"
+                >Estética Dental</td
+              >
+              <td class="p-4 md:p-6 text-text-muted"
+                >Dientes manchados, fracturas, diseño de sonrisa</td
+              >
+              <td class="p-4 md:p-6 text-text-muted">1-3 sesiones</td>
+              <td class="p-4 md:p-6 text-text-muted"
+                >Blanqueamiento LED, carillas CAD/CAM</td
+              >
+              <td class="p-4 md:p-6 text-cta-500 font-medium">2-10 años</td>
+            </tr>
+            <tr class="hover:bg-primary-50/30 transition-colors">
+              <td class="p-4 md:p-6 font-semibold text-text-main"
+                >Implantología</td
+              >
+              <td class="p-4 md:p-6 text-text-muted"
+                >Dientes perdidos, rehabilitación total, prótesis fijas</td
+              >
+              <td class="p-4 md:p-6 text-text-muted">3-6 meses</td>
+              <td class="p-4 md:p-6 text-text-muted"
+                >CBCT 3D, guiado digital, titanio grado 5</td
+              >
+              <td class="p-4 md:p-6 text-cta-500 font-medium">De por vida</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <AppointmentForm />
+
+  <div id="faq">
+    <!-- FAQPage Schema para GEO/SEO -->
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <FAQ
+      sectionTitle="Preguntas frecuentes"
+      questions={[
+        {
+          question: "¿Cuanto tiempo dura una consulta de valoracion?",
+          answer:
+            "La consulta de valoracion dura aproximadamente 45 minutos. Incluye radiografias digitales, examen completo y un plan de tratamiento personalizado sin compromiso.",
+        },
+        {
+          question: "¿Ofrecen planes de pago?",
+          answer:
+            "Si, ofrecemos planes de financiamiento flexibles con cuotas mensuales. Tambien aceptamos seguros medicos principales y tarjetas de credito.",
+        },
+        {
+          question: "¿Que tecnologias utilizan?",
+          answer:
+            "Contamos con radiografia digital 3D, escaner intraoral, sedacion consciente y equipos de ultima generacion para maximizar precision y comodidad.",
+        },
+        {
+          question: "¿Atienden emergencias dentales?",
+          answer:
+            "Si, contamos con servicio de emergencias. El mismo dia te atendemos para dolor agudo, trauma dental o infeccion.",
+        },
+        {
+          question: "¿Es doloroso el tratamiento de implantes?",
+          answer:
+            "No. Utilizamos anestesia local de efecto prolongado y ofrecemos sedacion consciente. La mayoria de nuestros pacientes describe el proceso como mucho mas comodo de lo que esperaba.",
+        },
+        {
+          question: "¿Cada cuanto debo visitar al dentista?",
+          answer:
+            "Recomendamos una revision y limpieza profesional cada 6 meses. Pacientes con tratamientos activos pueden requerir visitas mas frecuentes.",
+        },
+      ]}
+    />
+  </div>
+
+  <CTASection
+    title="¿Listo para transformar tu sonrisa?"
+    description="No esperes a que sea una urgencia. La prevencion es la mejor inversion para tu salud oral y tu confianza."
+    buttonText="Agendar mi cita ahora"
+    buttonLink="#agenda"
+    microcopy="Toma solo 30 segundos. Sin compromiso."
+    accentImage={{
+      alt: "Detalle clínico: manos con guantes sosteniendo escáner intraoral, reflejo de tecnología avanzada",
+    }}
+  />
+
+  <Footer
+    companyName="BrightSmile"
+    tagline="Cuidamos tu sonrisa con tecnologia, experiencia y calidez humana."
+    links={[
+      { label: "Servicios", href: "#servicios" },
+      { label: "Como Funciona", href: "#como-funciona" },
+      { label: "Testimonios", href: "#evidencia" },
+      { label: "FAQ", href: "#faq" },
+      { label: "Agendar Cita", href: "#agenda" },
+    ]}
+    socialLinks={[
+      {
+        platform: "Instagram",
+        url: "https://instagram.com/brightsmile",
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" /></svg>',
+      },
+      {
+        platform: "Facebook",
+        url: "https://facebook.com/brightsmile",
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>',
+      },
+      {
+        platform: "WhatsApp",
+        url: "https://wa.me/584121234567",
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>',
+      },
+    ]}
+    address="Av. Principal, Centro Medico Las Delicias, Piso 3, Consultorio 305, [TU CIUDAD]"
+    phone="+58 412-1234567"
+    email="info@brightsmile.com.ve"
+  />
+</Layout>

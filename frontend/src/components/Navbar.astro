@@ -1,0 +1,62 @@
+﻿---
+export interface Props {
+  brandName: string
+  links: Array<{ label: string; href: string }>
+  ctaText?: string
+  ctaLink?: string
+}
+
+const { brandName, links, ctaText, ctaLink } = Astro.props
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-bg-surface/90 backdrop-blur-md border-b border-border/50">
+  <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    <a href="/" class="flex items-center gap-2.5 font-heading font-bold text-xl text-text-main">
+      <img src="/images/logo-diente.webp" alt="BrightSmile" class="w-8 h-8" width="32" height="32" />
+      {brandName}
+    </a>
+
+    <div class="hidden md:flex items-center gap-8">
+      {links.map((link) => (
+        <a href={link.href} class="text-text-muted hover:text-primary-500 transition-colors text-sm font-medium cursor-pointer">{link.label}</a>
+      ))}
+    </div>
+
+    <div class="flex items-center gap-4">
+      {ctaText && ctaLink && (
+        <a href={ctaLink} class="hidden sm:inline-flex btn-primary text-sm py-2 px-5">
+          {ctaText}
+        </a>
+      )}
+      <button
+        id="mobile-menu-toggle"
+        class="md:hidden w-10 h-10 flex items-center justify-center text-text-main cursor-pointer"
+        aria-label="Abrir menu"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-bg-surface px-6 py-4">
+    <div class="flex flex-col gap-4">
+      {links.map((link) => (
+        <a href={link.href} class="text-text-muted hover:text-primary-500 transition-colors text-sm font-medium cursor-pointer py-2">{link.label}</a>
+      ))}
+      {ctaText && ctaLink && (
+        <a href={ctaLink} class="btn-primary text-sm py-2 px-5 text-center mt-2">{ctaText}</a>
+      )}
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("mobile-menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+
+  if (toggle && menu) {
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+  }
+</script>

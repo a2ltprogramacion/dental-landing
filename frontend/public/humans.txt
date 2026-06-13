@@ -1,0 +1,16 @@
+﻿/* TEAM */
+Developer & Architect: A2LT Soluciones
+Website: https://a2lt.netlify.app
+Contact: contacto@a2lt.com
+Location: Venezuela / Remote
+
+/* TECHNOLOGY */
+Framework: Astro 6 (SSG)
+Styling: Tailwind CSS v4 (Oxide Engine, CSS-First @theme)
+Bookings: Cal.com (embedded scheduling)
+Hosting: Cloudflare Pages
+Language: TypeScript
+
+/* SITE */
+Last update: 2026/06/13
+Standards: HTML5, CSS3, WAI-ARIA

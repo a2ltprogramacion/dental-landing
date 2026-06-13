@@ -1,0 +1,90 @@
+﻿---
+import SeoHead from "../components/atoms/SeoHead.astro";
+import "../styles/global.css";
+
+export interface Props {
+  title: string
+  description: string
+  canonicalURL?: string
+  ogImage?: string
+  ogImageWidth?: number
+  ogImageHeight?: number
+  ogImageAlt?: string
+  siteName?: string
+  type?: "website" | "article"
+  publishedTime?: string
+  modifiedTime?: string
+  authorName?: string
+  authorURL?: string
+}
+
+const {
+  title,
+  description,
+  canonicalURL = Astro.url.href,
+  ogImage = "/images/og-brightsmile-dental-clinic.svg",
+  ogImageWidth = 1200,
+  ogImageHeight = 630,
+  ogImageAlt = "BrightSmile — Odontología integral con tecnología y calidez humana",
+  siteName = "Clínica Dental BrightSmile",
+  type = "website",
+  publishedTime,
+  modifiedTime,
+  authorName = "Equipo BrightSmile",
+  authorURL = "https://brightsmile.pages.dev/#equipo",
+} = Astro.props
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/webp" href="/images/logo-diente.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Noto+Sans:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Preload OG Image for social crawlers -->
+    <link rel="preload" as="image" href={new URL(ogImage, Astro.url.origin).href} />
+    <SeoHead
+      title={title}
+      description={description}
+      canonicalURL={canonicalURL}
+      ogImage={ogImage}
+      ogImageWidth={ogImageWidth}
+      ogImageHeight={ogImageHeight}
+      ogImageAlt={ogImageAlt}
+      locale="es_VE"
+      siteName={siteName}
+      type={type}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      authorName={authorName}
+      authorURL={authorURL}
+    />
+  </head>
+  <body class="noise-overlay relative">
+    <slot />
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      document.querySelectorAll(".reveal").forEach((el) => {
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>

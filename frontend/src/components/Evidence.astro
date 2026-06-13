@@ -1,0 +1,103 @@
+﻿---
+import { Image } from 'astro:assets';
+import evidenceAction from '../assets/EVIDENCE.webp';
+
+export interface Testimonial {
+  name: string
+  result: string
+  detail: string
+}
+
+export interface Props {
+  sectionTitle: string
+  testimonials: Testimonial[]
+  stats: Array<{ value: string; label: string }>
+  actionImage?: { alt: string }
+}
+
+const { sectionTitle, testimonials, stats, actionImage } = Astro.props
+---
+
+<section class="section-padding bg-bg-dark text-white relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-primary-900/40 to-bg-dark z-0"></div>
+  <div class="absolute top-0 left-0 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+  <div class="absolute bottom-0 right-0 w-80 h-80 bg-accent-500/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16 reveal">
+      <span class="inline-block px-4 py-1.5 mb-4 text-xs font-semibold text-primary-300 bg-primary-500/15 rounded-full border border-primary-400/20 uppercase tracking-wider">Resultados reales</span>
+      <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">{sectionTitle}</h2>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid sm:grid-cols-3 gap-6 mb-20 max-w-4xl mx-auto reveal">
+      {stats.map((stat) => (
+        <div class="text-center p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
+          <span class="block text-4xl md:text-5xl font-heading font-bold text-accent-400 mb-3">{stat.value}</span>
+          <span class="text-primary-200 text-sm uppercase tracking-wider">{stat.label}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Testimonials + Image Split Layout -->
+    <div class="text-center mb-12 reveal">
+      <h3 class="text-xl font-heading font-semibold text-primary-200 uppercase tracking-wider text-sm">Lo que dicen nuestros pacientes</h3>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-8 items-start reveal">
+      <!-- Left: Testimonials (2 only) -->
+      <div class="lg:col-span-3 grid sm:grid-cols-2 gap-6">
+        {testimonials.slice(0, 2).map((t) => (
+          <div class="p-6 md:p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/8 transition-colors duration-300 h-full flex flex-col">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-accent-400 mb-4 opacity-60 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.39c0-5.604.517-8.195 3.59-10.61a1.659 1.659 0 00-2.09-2.56C12.082 2.582 9.983 5.5 9.983 13.61V21h4.034zm-9.05 0v-7.39c0-5.604.517-8.195 3.59-10.61a1.659 1.659 0 00-2.09-2.56C3.032 2.582.933 5.5.933 13.61V21h4.034z" /></svg>
+            <p class="text-white/80 leading-relaxed mb-6 flex-grow text-sm md:text-base">{t.detail}</p>
+            <div class="flex items-center gap-3 pt-4 border-t border-white/10 mt-auto">
+              <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
+                {t.name.charAt(0)}
+              </div>
+              <div>
+                <p class="font-semibold text-white text-sm">{t.name}</p>
+                <p class="text-primary-300 text-xs">{t.result}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Right: Action Image sin marco — fondo transparente integrado -->
+      <div class="lg:col-span-2">
+        <div class="relative">
+          {actionImage && (
+            <Image
+              src={evidenceAction}
+              alt={actionImage.alt}
+              width={600}
+              height={500}
+              class="w-full h-auto object-cover"
+              loading="lazy"
+              decoding="async"
+              quality={85}
+              format="avif"
+            />
+          )}
+
+          <!-- Google Rating Badge sobre la imagen -->
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-black/60 backdrop-blur-sm">
+              <div class="flex items-center gap-0.5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <svg key={i} xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <span class="font-bold text-white text-base">4.9</span>
+              <span class="text-white/60 text-xs">Calificación Google</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

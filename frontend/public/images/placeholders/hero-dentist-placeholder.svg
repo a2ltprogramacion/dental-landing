@@ -1,0 +1,18 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" fill="none">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0891b2" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0e7490" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+  <!-- Silueta estilizada dentista (cowboy shot) -->
+  <ellipse cx="200" cy="140" rx="70" ry="85" fill="url(#grad1)"/>
+  <ellipse cx="200" cy="300" rx="100" ry="110" fill="url(#grad1)"/>
+  <ellipse cx="200" cy="520" rx="120" ry="90" fill="url(#grad1)"/>
+  <!-- Detalles sugeridos -->
+  <path d="M160 120 Q200 100 240 120" stroke="#0891b2" stroke-width="2" fill="none" opacity="0.5"/>
+  <circle cx="180" cy="135" r="8" fill="#0891b2" opacity="0.4"/>
+  <circle cx="220" cy="135" r="8" fill="#0891b2" opacity="0.4"/>
+  <!-- Texto placeholder -->
+  <text x="200" y="560" text-anchor="middle" font-family="system-ui" font-size="14" fill="#0891b2" opacity="0.6">[PLACEHOLDER: Dra. María González - cowboy shot]</text>
+</svg>

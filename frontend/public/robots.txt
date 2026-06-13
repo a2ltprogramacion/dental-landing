@@ -1,0 +1,29 @@
+﻿# BrightSmile Dental Clinic - robots.txt
+# Allow all major search engines and AI citation engines
+User-agent: *
+Allow: /
+
+# AI Citation Engines (GEO Optimization) - Allow for citation retrieval
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Disallow admin/private paths (none in static site)
+# Disallow: /admin/
+# Disallow: /api/
+
+Sitemap: https://brightsmile.pages.dev/sitemap-index.xml
+
+# Host directive for preferred domain
+Host: https://brightsmile.pages.dev
