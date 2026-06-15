@@ -127,7 +127,8 @@ const expertQuote = {
   />
 
   <Hero
-    title="Tu sonrisa merece lo mejor"
+    title="Tu sonrisa"
+    titleAccent="merece lo mejor"
     subtitle="Odontologia integral con tecnologia de vanguardia y un equipo que realmente se preocupa por tu bienestar dental."
     ctaText="Agenda tu Cita"
     ctaLink="#agenda"
@@ -326,7 +327,7 @@ const expertQuote = {
           >Nuestras especialidades</span
         >
         <h2
-          class="text-3xl md:text-4xl font-heading font-bold text-text-main mb-4"
+          class="text-3xl md:text-4xl font-heading font-bold text-text-main mb-4 shimmer-text"
         >
           Elige la tuya
         </h2>
@@ -335,88 +336,133 @@ const expertQuote = {
           personalizado sin compromiso.
         </p>
       </div>
-      <div
-        class="overflow-x-auto rounded-2xl border border-border bg-bg-surface"
-      >
-        <table class="w-full">
+      <!-- Desktop: tabla; Móvil: tarjetas verticales -->
+      <div class="rounded-2xl border border-border bg-bg-surface">
+        <table class="w-full hidden md:table">
           <thead>
             <tr class="bg-primary-50 border-b border-border">
-              <th
-                class="text-left p-4 md:p-6 font-heading font-semibold text-text-main"
-                >Servicio</th
-              >
-              <th
-                class="text-left p-4 md:p-6 font-heading font-semibold text-text-main"
-                >Indicado para</th
-              >
-              <th
-                class="text-left p-4 md:p-6 font-heading font-semibold text-text-main"
-                >Duración típica</th
-              >
-              <th
-                class="text-left p-4 md:p-6 font-heading font-semibold text-text-main"
-                >Tecnología clave</th
-              >
-              <th
-                class="text-left p-4 md:p-6 font-heading font-semibold text-text-main"
-                >Garantía</th
-              >
+              <th class="text-left p-4 md:p-6 font-heading font-semibold text-text-main">Servicio</th>
+              <th class="text-left p-4 md:p-6 font-heading font-semibold text-text-main">Indicado para</th>
+              <th class="text-left p-4 md:p-6 font-heading font-semibold text-text-main">Duración típica</th>
+              <th class="text-left p-4 md:p-6 font-heading font-semibold text-text-main">Tecnología clave</th>
+              <th class="text-left p-4 md:p-6 font-heading font-semibold text-text-main">Garantía</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-border">
             <tr class="hover:bg-primary-50/30 transition-colors">
-              <td class="p-4 md:p-6 font-semibold text-text-main"
-                >Odontología General</td
-              >
-              <td class="p-4 md:p-6 text-text-muted"
-                >Prevención, limpiezas, caries, revisiones rutinarias</td
-              >
+              <td class="p-4 md:p-6 font-semibold text-text-main">Odontología General</td>
+              <td class="p-4 md:p-6 text-text-muted">Prevención, limpiezas, caries, revisiones rutinarias</td>
               <td class="p-4 md:p-6 text-text-muted">30-45 min</td>
-              <td class="p-4 md:p-6 text-text-muted"
-                >Radiografía digital, fluorización</td
-              >
+              <td class="p-4 md:p-6 text-text-muted">Radiografía digital, fluorización</td>
               <td class="p-4 md:p-6 text-cta-500 font-medium">6 meses</td>
             </tr>
             <tr class="hover:bg-primary-50/30 transition-colors">
-              <td class="p-4 md:p-6 font-semibold text-text-main">Ortodoncia</td
-              >
-              <td class="p-4 md:p-6 text-text-muted"
-                >Dientes desalineados, mordida cruzada, apiñamiento</td
-              >
+              <td class="p-4 md:p-6 font-semibold text-text-main">Ortodoncia</td>
+              <td class="p-4 md:p-6 text-text-muted">Dientes desalineados, mordida cruzada, apiñamiento</td>
               <td class="p-4 md:p-6 text-text-muted">12-24 meses</td>
-              <td class="p-4 md:p-6 text-text-muted"
-                >Escáner intraoral, aligners 3D</td
-              >
+              <td class="p-4 md:p-6 text-text-muted">Escáner intraoral, aligners 3D</td>
               <td class="p-4 md:p-6 text-cta-500 font-medium">5 años</td>
             </tr>
             <tr class="hover:bg-primary-50/30 transition-colors">
-              <td class="p-4 md:p-6 font-semibold text-text-main"
-                >Estética Dental</td
-              >
-              <td class="p-4 md:p-6 text-text-muted"
-                >Dientes manchados, fracturas, diseño de sonrisa</td
-              >
+              <td class="p-4 md:p-6 font-semibold text-text-main">Estética Dental</td>
+              <td class="p-4 md:p-6 text-text-muted">Dientes manchados, fracturas, diseño de sonrisa</td>
               <td class="p-4 md:p-6 text-text-muted">1-3 sesiones</td>
-              <td class="p-4 md:p-6 text-text-muted"
-                >Blanqueamiento LED, carillas CAD/CAM</td
-              >
+              <td class="p-4 md:p-6 text-text-muted">Blanqueamiento LED, carillas CAD/CAM</td>
               <td class="p-4 md:p-6 text-cta-500 font-medium">2-10 años</td>
             </tr>
             <tr class="hover:bg-primary-50/30 transition-colors">
-              <td class="p-4 md:p-6 font-semibold text-text-main"
-                >Implantología</td
-              >
-              <td class="p-4 md:p-6 text-text-muted"
-                >Dientes perdidos, rehabilitación total, prótesis fijas</td
-              >
+              <td class="p-4 md:p-6 font-semibold text-text-main">Implantología</td>
+              <td class="p-4 md:p-6 text-text-muted">Dientes perdidos, rehabilitación total, prótesis fijas</td>
               <td class="p-4 md:p-6 text-text-muted">3-6 meses</td>
-              <td class="p-4 md:p-6 text-text-muted"
-                >CBCT 3D, guiado digital, titanio grado 5</td
-              >
+              <td class="p-4 md:p-6 text-text-muted">CBCT 3D, guiado digital, titanio grado 5</td>
               <td class="p-4 md:p-6 text-cta-500 font-medium">De por vida</td>
             </tr>
           </tbody>
         </table>
+
+        <!-- Mobile: card layout (visible solo en móvil) -->
+        <div class="md:hidden divide-y divide-border">
+          <div class="p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-semibold text-text-main text-lg">Odontología General</span>
+              <span class="text-cta-500 font-semibold text-sm">Garantía: 6 meses</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div>
+                <span class="text-text-muted text-xs uppercase tracking-wider block mb-0.5">Indicado para</span>
+                <span class="text-text-main">Prevención, limpiezas, caries, revisiones rutinarias</span>
+              </div>
+              <div>
+                <span class="text-text-muted text-xs uppercase tracking-wider block mb-0.5">Duración</span>
+                <span class="text-text-main">30-45 min</span>
+              </div>
+              <div class="col-span-2">
+                <span class="text-text-muted text-xs uppercase tracking-wider block mb-0.5">Tecnología clave</span>
+                <span class="text-text-main">Radiografía digital, fluorización</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-semibold text-text-main text-lg">Ortodoncia</span>
+              <span class="text-cta-500 font-semibold text-sm">Garantía: 5 años</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div>
+                <span class="text-text-muted text-xs uppercase tracking-wider block mb-0.5">Indicado para</span>
+                <span class="text-text-main">Dientes desalineados, mordida cruzada, apiñamiento</span>
+              </div>
+              <div>
+                <span class="text-text-muted text-xs uppercase tracking-wider block mb-0.5">Duración</span>
+                <span class="text-text-main">12-24 meses</span>
+              </div>
+              <div class="col-span-2">
+                <span class="text-text-muted text-xs uppercase tracking-wider block mb-0.5">Tecnología clave</span>
+                <span class="text-text-main">Escáner intraoral, aligners 3D</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-semibold text-text-main text-lg">Estética Dental</span>
+              <span class="text-cta-500 font-semibold text-sm">Garantía: 2-10 años</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div>
+                <span class="text-text-muted text-xs uppercase tracking-wider block mb-0.5">Indicado para</span>
+                <span class="text-text-main">Dientes manchados, fracturas, diseño de sonrisa</span>
+              </div>
+              <div>
+                <span class="text-text-muted text-xs uppercase tracking-wider block mb-0.5">Duración</span>
+                <span class="text-text-main">1-3 sesiones</span>
+              </div>
+              <div class="col-span-2">
+                <span class="text-text-muted text-xs uppercase tracking-wider block mb-0.5">Tecnología clave</span>
+                <span class="text-text-main">Blanqueamiento LED, carillas CAD/CAM</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-semibold text-text-main text-lg">Implantología</span>
+              <span class="text-cta-500 font-semibold text-sm">Garantía: De por vida</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div>
+                <span class="text-text-muted text-xs uppercase tracking-wider block mb-0.5">Indicado para</span>
+                <span class="text-text-main">Dientes perdidos, rehabilitación total, prótesis fijas</span>
+              </div>
+              <div>
+                <span class="text-text-muted text-xs uppercase tracking-wider block mb-0.5">Duración</span>
+                <span class="text-text-main">3-6 meses</span>
+              </div>
+              <div class="col-span-2">
+                <span class="text-text-muted text-xs uppercase tracking-wider block mb-0.5">Tecnología clave</span>
+                <span class="text-text-main">CBCT 3D, guiado digital, titanio grado 5</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

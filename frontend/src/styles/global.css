@@ -56,6 +56,16 @@
   }
 }
 
+@keyframes shimmer-text {
+  0% { background-position: 0% center; }
+  100% { background-position: 400% center; }
+}
+
+@keyframes shimmer-accent {
+  0% { background-position: 0% center; }
+  100% { background-position: 400% center; }
+}
+
 @layer components {
   .noise-overlay::before {
     content: "";
@@ -64,9 +74,53 @@
     z-index: 1;
     pointer-events: none;
     opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     background-repeat: repeat;
     background-size: 256px 256px;
+  }
+
+  .shimmer-text {
+    background: linear-gradient(
+      90deg,
+      currentColor 0%,
+      currentColor 40%,
+      rgba(255, 255, 255, 0.15) 45%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0.15) 55%,
+      currentColor 60%,
+      currentColor 100%
+    );
+    background-size: 400% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-color: currentColor;
+    animation: shimmer-text 10s ease-in-out infinite;
+  }
+
+  .shimmer-text:active,
+  .shimmer-text:focus {
+    background-color: currentColor;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .shimmer-accent {
+    background: linear-gradient(
+      90deg,
+      var(--color-accent-400) 0%,
+      var(--color-accent-400) 40%,
+      rgba(255, 255, 255, 0.2) 45%,
+      rgba(255, 255, 255, 0.65) 50%,
+      rgba(255, 255, 255, 0.2) 55%,
+      var(--color-accent-400) 60%,
+      var(--color-accent-400) 100%
+    );
+    background-size: 400% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-color: var(--color-accent-400);
+    animation: shimmer-accent 10s ease-in-out infinite;
   }
 
   .btn-primary {
@@ -164,6 +218,12 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  .shimmer-text,
+  .shimmer-accent {
+    animation: none;
+    background-position: 0% center;
+    -webkit-text-fill-color: unset;
   }
   html {
     scroll-behavior: auto;
